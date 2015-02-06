@@ -1,29 +1,7 @@
-/** @jsx React.DOM */
-
-var BookView = React.createClass({
-  handleClick: function() {
-    React.render(
-      <AllBooksView />,
-      document.getElementById('books')
-    )
-    document.getElementById(this.props.book.bookId).scrollIntoView()
+var AllBooks = React.createClass({
+  toggleViewType: function() {
+    this.state.viewType === "list" ? this.setState({viewType: "grid"}) : this.setState({viewType: "list"})
   },
-  render: function() {
-    return (
-      <div className="container clearfix center py2">
-        <img className="fit thumbnail border" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
-        <h1>{this.props.book.name}</h1>
-        <h3>{this.props.book.authors}</h3>
-        <p>{this.props.book.subjects}</p>
-        <p>{this.props.book.blurb}</p>
-        <p>{this.props.book.authors}</p>
-        <button onClick={this.handleClick}>Back</button>
-      </div>
-    )
-  }
-})
-
-var AllBooksView = React.createClass({
   changeFilterType: function(event) {
     this.filterType = event.target.value
   },
@@ -96,7 +74,7 @@ var AllBooksView = React.createClass({
         languages: bookData[book]["doc"]["languages"]
       })
     }
-    return {initialBooks: books, books: []}
+    return {initialBooks: books, books: [], viewType: "list"}
   },
   componentWillMount: function(){
     this.sortTitles()
@@ -106,10 +84,13 @@ var AllBooksView = React.createClass({
     if(this.state.books.length === 0) {
       mainView = <h1>No books match this filter!</h1>
     } else {
-      mainView = <BookList books={this.state.books} />
+      mainView = <BookList viewType={this.state.viewType} books={this.state.books} />
     }
     return (
       <section>
+        <div className="right">
+          <button onClick={this.toggleViewType}>{this.state.viewType}</button>
+        </div>
         <div id="searchBar">
           <input type="text" placeholder="Search" onChange={this.filterList}/>
           <select onChange={this.changeFilterType}>
@@ -129,65 +110,3 @@ var AllBooksView = React.createClass({
     )
   }
 })
-
-var BookList = React.createClass({
-  render: function() {
-    var bookNodes = this.props.books.map(function(book, index){
-      return (
-        <li key={index}>
-          <BookCell book={book} />
-        </li>
-      )
-    })
-    return (
-      <ul className="bookList">
-        {bookNodes}
-      </ul>
-    )
-  }
-})
-
-var BookCell = React.createClass({
-  handleClick: function() {
-    React.render(
-      <BookView book={this.props.book} />,
-      document.getElementById('books')
-    )
-  },
-  render: function() {
-    var authorsList = this.props.book.authors.map(function(author, index){
-      return (
-        <li className="authors" key={index}>
-          <Author fullName={author["full_name"]} />
-        </li>
-      )
-    })
-    return (
-      <div className="table bookCell" onClick={this.handleClick}>
-        <div className="table-cell pr4">
-          <img className="fit thumbnail" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
-        </div>
-        <div className="table-cell full-width">
-          <h1 className="m0">{this.props.book.name}</h1>
-          <h5 className="m0">{this.props.book.subjects}</h5>
-          <ul className="m0 py4">{authorsList}</ul>
-        </div>
-      </div>
-    )
-  }
-
-})
-
-var Author = React.createClass({
-  render: function() {
-    return (
-      <span>{this.props.fullName}</span>
-    )
-  }
-})
-
-
-React.render(
-  <AllBooksView />,
-  document.getElementById('books')
-)
