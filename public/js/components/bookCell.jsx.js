@@ -1,7 +1,7 @@
 var BookCell = React.createClass({
   handleClick: function() {
     React.render(
-      <BookView book={this.props.book} />,
+      <BookView book={this.props.book} viewType="list" scrollPosition={window.scrollY} />,
       document.getElementById('books')
     )
   },
