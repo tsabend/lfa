@@ -80,16 +80,22 @@ var AllBooks = React.createClass({
     this.sortTitles()
   },
   render: function() {
-    var mainView;
+    var mainView
     if(this.state.books.length === 0) {
       mainView = <h1>No books match this filter!</h1>
     } else {
       mainView = <BookList viewType={this.state.viewType} books={this.state.books} />
     }
+    var viewTypeButton
+    if(this.state.viewType === "list") {
+      viewTypeButton = <span><i className="fa fa-th-list blue mr1"></i><i className="fa fa-th-large"></i></span>
+    } else {
+      viewTypeButton = <span><i className="fa fa-th-list mr1"></i><i className="fa fa-th-large blue"></i></span>
+    }
     return (
       <section>
         <div className="right">
-          <button onClick={this.toggleViewType}>{this.state.viewType}</button>
+          <button className="bg-white" onClick={this.toggleViewType}>{viewTypeButton}</button>
         </div>
         <div id="searchBar">
           <input type="text" placeholder="Search" onChange={this.filterList}/>

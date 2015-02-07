@@ -80,16 +80,22 @@ var AllBooks = React.createClass({displayName: "AllBooks",
     this.sortTitles()
   },
   render: function() {
-    var mainView;
+    var mainView
     if(this.state.books.length === 0) {
       mainView = React.createElement("h1", null, "No books match this filter!")
     } else {
       mainView = React.createElement(BookList, {viewType: this.state.viewType, books: this.state.books})
     }
+    var viewTypeButton
+    if(this.state.viewType === "list") {
+      viewTypeButton = React.createElement("span", null, React.createElement("i", {className: "fa fa-th-list blue mr1"}), React.createElement("i", {className: "fa fa-th-large"}))
+    } else {
+      viewTypeButton = React.createElement("span", null, React.createElement("i", {className: "fa fa-th-list mr1"}), React.createElement("i", {className: "fa fa-th-large blue"}))
+    }
     return (
       React.createElement("section", null, 
         React.createElement("div", {className: "right"}, 
-          React.createElement("button", {onClick: this.toggleViewType}, this.state.viewType)
+          React.createElement("button", {className: "bg-white", onClick: this.toggleViewType}, viewTypeButton)
         ), 
         React.createElement("div", {id: "searchBar"}, 
           React.createElement("input", {type: "text", placeholder: "Search", onChange: this.filterList}), 
