@@ -1,10 +1,22 @@
 var BookView = React.createClass({
-  handleClick: function() {
+  backToAllBooks: function() {
     React.render(
       <AllBooks viewType={this.props.viewType} />,
       document.getElementById('books')
     )
     window.scrollTo(0, this.props.scrollPosition)
+  },
+  handleBack: function() {
+    document.onkeydown = function (e) {
+        if(e.keyCode === 8) {
+          this.backToAllBooks()
+          document.onkeydown = null
+          return false
+        }
+      }.bind(this)
+  },
+  componentDidMount: function() {
+    this.handleBack()
   },
   render: function() {
     return (
