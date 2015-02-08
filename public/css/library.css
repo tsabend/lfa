@@ -17,8 +17,13 @@ nav {
 
 }
 
-.authorsList {
+ul {
   list-style: none;
+  padding-left: 0;
+}
+
+.point {
+  cursor: pointer;
 }
 
 .border {
@@ -31,7 +36,7 @@ nav {
 }
 
 .fa {
-  font-size:48px;
+  font-size:36px;
 }
 
 .thumbnail {
