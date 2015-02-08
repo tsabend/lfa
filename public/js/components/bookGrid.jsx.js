@@ -6,10 +6,36 @@ var BookGrid = React.createClass({
     )
   },
   render: function() {
+    var chompedName
+    if(this.props.book.name.length > 20){
+      chompedName = this.props.book.name.substring(0,20) + "..."
+    } else {
+      chompedName = this.props.book.name
+    }
+    var backOfBook
+    if(this.props.book.blurb.length > 0) {
+      if(this.props.book.blurb.length > 230) {
+        backOfBook = this.props.book.blurb.substring(0, 230) + "..."
+      } else {
+        backOfBook = this.props.book.blurb
+      }
+    } else {
+      backOfBook = "Click for more information"
+    }
     return (
-      <div className="py4 py2 px4" onClick={this.handleClick}>
-        <p className="center">{this.props.book.name.substring(0,10)}...</p>
-        <img className="fit thumbnail mx4 border" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
+      <div className="mt3 py2 px4" onClick={this.handleClick}>
+        <div className="flip-container">
+          <div className="flipper">
+            <div className="front">
+              <h4 className="center">{chompedName}</h4>
+              <img className="fit thumbnail mx4 border point" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
+            </div>
+            <div className="back">
+              <h4 className="center">{chompedName}</h4>
+              <p className="center thumbnail point border bg-blue">{backOfBook}</p>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
