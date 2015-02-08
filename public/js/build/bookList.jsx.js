@@ -1,8 +1,7 @@
 var BookList = React.createClass({displayName: "BookList",
   render: function() {
-    var that = this
     var bookNodes = this.props.books.map(function(book, index){
-      if(that.props.viewType === "list"){
+      if(this.props.viewType === "list"){
         return (
           React.createElement("li", {key: index}, 
             React.createElement(BookCell, {book: book})
@@ -15,7 +14,7 @@ var BookList = React.createClass({displayName: "BookList",
           )
         )
       }
-    })
+    }, this)
     var bookView
     if(this.props.viewType === "list") {
       bookView = (React.createElement("ul", {className: "bookList"}, bookNodes))

@@ -1,36 +1,49 @@
 var AllBooks = React.createClass({displayName: "AllBooks",
   toggleViewType: function() {
-    this.state.viewType === "list" ? this.setState({viewType: "grid"}) : this.setState({viewType: "list"})
+    this.state.viewType === "list" ?
+    this.setState({viewType: "grid"}) :
+    this.setState({viewType: "list"})
+  },
+  toggleNavBar: function() {
+    var searchBar = document.getElementById('sortBar')
+    sortBar.classList.contains("display-none") ?
+    sortBar.classList.remove("display-none") :
+    sortBar.classList.add("display-none")
   },
   changeFilterType: function(event) {
     this.filterType = event.target.value
   },
   filterType: "title",
   filterList: function(event) {
-    var that = this
     var filteredList = this.state.initialBooks
     filteredList = filteredList.filter(function(book){
       // Filter by title
-      if(that.filterType === "title"){
+      if(this.filterType === "title"){
         return book.name.toLowerCase().search(
         event.target.value.toLowerCase()) !== -1
       }
       // Filter by author
-      else if(that.filterType === "author") {
+      else if(this.filterType === "author") {
         var numMatches = book.authors.filter(function(author) {
           return author.full_name.toLowerCase().search(
           event.target.value.toLowerCase()) !== -1
         }).length
         return numMatches > 0
       // Filter by subject
-      } else if(that.filterType === "subject") {
+    } else if(this.filterType === "subject") {
         var numMatches = book.subjects.filter(function(subject) {
           return subject.toLowerCase().search(
           event.target.value.toLowerCase()) !== -1
         }).length
         return numMatches > 0
+      } else if(this.filterType === "tag") {
+        var numMatches = book.tags.filter(function(tag) {
+          return tag.toLowerCase().search(
+          event.target.value.toLowerCase()) !== -1
+        }).length
+        return numMatches > 0
       }
-    })
+    }, this)
     this.setState({books: filteredList})
   },
   direction: "desc",
