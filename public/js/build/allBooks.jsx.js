@@ -87,7 +87,7 @@ var AllBooks = React.createClass({displayName: "AllBooks",
         languages: bookData[book]["doc"]["languages"]
       })
     }
-    return {initialBooks: books, books: [], viewType: "list"}
+    return {initialBooks: books, books: [], viewType: this.props.viewType || "list"}
   },
   componentWillMount: function(){
     this.sortTitles()
