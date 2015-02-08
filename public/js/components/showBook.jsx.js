@@ -29,3 +29,31 @@ var BookView = React.createClass({
     )
   }
 })
+
+var StringArray = React.createClass({
+  render: function() {
+    var nodes = this.props.array.join(", ")
+    return (
+      <p>
+        {nodes}
+      </p>
+    )
+  }
+})
+
+var Authors = React.createClass({
+  render: function() {
+    var authorNodes = this.props.authors.map(function(author, index){
+      return (
+        <li key={index}>
+          {author.full_name}
+        </li>
+      )
+    })
+    return (
+      <ul>
+        {authorNodes}
+      </ul>
+    )
+  }
+})

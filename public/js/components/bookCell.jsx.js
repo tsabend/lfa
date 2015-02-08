@@ -6,34 +6,17 @@ var BookCell = React.createClass({
     )
   },
   render: function() {
-    var authorsList = this.props.book.authors.map(function(author, index){
-      return (
-        <li className="authors" key={index}>
-          <Author fullName={author["full_name"]} />
-        </li>
-      )
-    })
     return (
-      <div className="table border" onClick={this.handleClick}>
+      <div className="table border point" onClick={this.handleClick}>
         <div className="table-cell pr4">
           <img className="fit thumbnail" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
         </div>
         <div className="table-cell full-width">
-          <h1 className="m0">{this.props.book.name}</h1>
-          <h5 className="m0">{this.props.book.subjects}</h5>
-          <ul className="m0 py4">{authorsList}</ul>
+          <h1 className="m0 py2">{this.props.book.name}</h1>
+          <Authors authors={this.props.book.authors} />
         </div>
       </div>
     )
   }
 
-})
-
-
-var Author = React.createClass({
-  render: function() {
-    return (
-      <span>{this.props.fullName}</span>
-    )
-  }
 })
