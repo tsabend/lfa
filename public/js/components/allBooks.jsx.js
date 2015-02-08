@@ -79,7 +79,11 @@ var AllBooks = React.createClass({
       books.push({
         bookId: book,
         blurb: bookData[book]["doc"]["blurb"],
-        editor: bookData[book]["doc"]["editor"],
+        // This is assuming there is only one editor ever
+        // the fact that this obj is an array means that
+        // might not be the case, but the property name
+        // indicates it's singular
+        editor: bookData[book]["doc"]["editor"][0]["name"],
         authors: bookData[book]["doc"]["authors"],
         name: bookData[book]["doc"]["name"],
         tags: bookData[book]["doc"]["tags"],
