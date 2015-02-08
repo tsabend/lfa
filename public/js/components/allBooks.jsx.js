@@ -105,26 +105,47 @@ var AllBooks = React.createClass({
     } else {
       viewTypeButton = <span><i className="fa fa-th-list mr1"></i><i className="fa fa-th-large blue"></i></span>
     }
+    var searchStyle = {
+      fontFamily: 'FontAwesome'
+    }
     return (
       <section>
-        <div className="right">
-          <button className="bg-white" onClick={this.toggleViewType}>{viewTypeButton}</button>
+      <nav className="full-width">
+      <span className="h1 logo white">My Books</span>
+      <div className="clearfix white bg-dark-gray">
+        <div className="left">
+          <span className="button m0 button-nav-dark point">
+          <i className="fa fa-align-justify" onClick={this.toggleNavBar}></i>
+          </span>
         </div>
-        <div id="searchBar">
-          <input type="text" placeholder="Search" onChange={this.filterList}/>
-          <select onChange={this.changeFilterType}>
+        <div className="right">
+          <span className="button m0 button-nav-dark" onClick={this.toggleViewType}>{viewTypeButton}</span>
+        </div>
+        <div className="clearfix sm-hide"></div>
+      </div>
+      <div id="sortBar" className="display-none clearfix">
+        <div className="overflow-hidden left px2 py2">
+          <input type="text" className="mb0 right fit field-dark" placeholder="&#xF002; Search" style={searchStyle} onChange={this.filterList}/>
+          <select className="mb0 right fit field-light" onChange={this.changeFilterType}>
             <option value="title">Title</option>
             <option value="author">Author</option>
+            <option value="tag">Tag</option>
             <option value="subject">Subject</option>
           </select>
         </div>
-        <div className="clearfix border-bottom">
-          <h1>Sort By</h1>
-          <span className="left button button-nav-tab" onClick={this.sortTitles}>Titles</span>
-          <span className="left button button-nav-tab" onClick={this.sortAuthors}>Authors</span>
-          <span className="left button button-nav-tab" onClick={this.sortSubjects}>Subjects</span>
+        <div className="right">
+          <span className="button button-blue-outline vab" onClick={this.sortTitles}>Titles</span>
+          <span className="button button-blue-outline vab" onClick={this.sortAuthors}>Authors</span>
+          <span className="button button-blue-outline vab" onClick={this.sortSubjects}>Subjects</span>
+          <span className="vas">
+            <i className="fa fa-sort"></i>
+          </span>
         </div>
-        {mainView}
+      </div>
+      </nav>
+        <div className="navbar-offset">
+          {mainView}
+        </div>
       </section>
     )
   }
