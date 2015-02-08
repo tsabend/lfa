@@ -79,7 +79,11 @@ var AllBooks = React.createClass({displayName: "AllBooks",
       books.push({
         bookId: book,
         blurb: bookData[book]["doc"]["blurb"],
-        editor: bookData[book]["doc"]["editor"],
+        // This is assuming there is only one editor ever
+        // the fact that this obj is an array means that
+        // might not be the case, but the property name
+        // indicates it's singular
+        editor: bookData[book]["doc"]["editor"][0]["name"],
         authors: bookData[book]["doc"]["authors"],
         name: bookData[book]["doc"]["name"],
         tags: bookData[book]["doc"]["tags"],
@@ -105,26 +109,47 @@ var AllBooks = React.createClass({displayName: "AllBooks",
     } else {
       viewTypeButton = React.createElement("span", null, React.createElement("i", {className: "fa fa-th-list mr1"}), React.createElement("i", {className: "fa fa-th-large blue"}))
     }
+    var searchStyle = {
+      fontFamily: 'FontAwesome'
+    }
     return (
       React.createElement("section", null, 
-        React.createElement("div", {className: "right"}, 
-          React.createElement("button", {className: "bg-white", onClick: this.toggleViewType}, viewTypeButton)
+      React.createElement("nav", {className: "full-width"}, 
+      React.createElement("span", {className: "h1 logo white"}, "My Books"), 
+      React.createElement("div", {className: "clearfix white bg-dark-gray"}, 
+        React.createElement("div", {className: "left"}, 
+          React.createElement("span", {className: "button m0 button-nav-dark point"}, 
+          React.createElement("i", {className: "fa fa-align-justify", onClick: this.toggleNavBar})
+          )
         ), 
-        React.createElement("div", {id: "searchBar"}, 
-          React.createElement("input", {type: "text", placeholder: "Search", onChange: this.filterList}), 
-          React.createElement("select", {onChange: this.changeFilterType}, 
+        React.createElement("div", {className: "right"}, 
+          React.createElement("span", {className: "button m0 button-nav-dark", onClick: this.toggleViewType}, viewTypeButton)
+        ), 
+        React.createElement("div", {className: "clearfix sm-hide"})
+      ), 
+      React.createElement("div", {id: "sortBar", className: "display-none clearfix"}, 
+        React.createElement("div", {className: "overflow-hidden left px2 py2"}, 
+          React.createElement("input", {type: "text", className: "mb0 right fit field-dark", placeholder: " Search", style: searchStyle, onChange: this.filterList}), 
+          React.createElement("select", {className: "mb0 right fit field-light", onChange: this.changeFilterType}, 
             React.createElement("option", {value: "title"}, "Title"), 
             React.createElement("option", {value: "author"}, "Author"), 
+            React.createElement("option", {value: "tag"}, "Tag"), 
             React.createElement("option", {value: "subject"}, "Subject")
           )
         ), 
-        React.createElement("div", {className: "clearfix border-bottom"}, 
-          React.createElement("h1", null, "Sort By"), 
-          React.createElement("span", {className: "left button button-nav-tab", onClick: this.sortTitles}, "Titles"), 
-          React.createElement("span", {className: "left button button-nav-tab", onClick: this.sortAuthors}, "Authors"), 
-          React.createElement("span", {className: "left button button-nav-tab", onClick: this.sortSubjects}, "Subjects")
-        ), 
-        mainView
+        React.createElement("div", {className: "right"}, 
+          React.createElement("span", {className: "button button-blue-outline vab", onClick: this.sortTitles}, "Titles"), 
+          React.createElement("span", {className: "button button-blue-outline vab", onClick: this.sortAuthors}, "Authors"), 
+          React.createElement("span", {className: "button button-blue-outline vab", onClick: this.sortSubjects}, "Subjects"), 
+          React.createElement("span", {className: "vas"}, 
+            React.createElement("i", {className: "fa fa-sort"})
+          )
+        )
+      )
+      ), 
+        React.createElement("div", {className: "navbar-offset"}, 
+          mainView
+        )
       )
     )
   }
