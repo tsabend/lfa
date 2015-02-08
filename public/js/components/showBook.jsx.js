@@ -24,7 +24,7 @@ var BookView = React.createClass({
 
     return (
       <div id="bookView">
-        <i onClick={this.backToAllBooks} className="fa fa-chevron-circle-left"></i>
+        <i onClick={this.backToAllBooks} className="point fa-large fa fa-chevron-circle-left"></i>
         <div className="container clearfix p2">
           <div className="col md-col-6 sm-col-12 p2">
             <img className="large-image border" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
@@ -43,7 +43,7 @@ var BookView = React.createClass({
             <p>{this.props.book.editor}</p>
             <h4>Tags</h4>
             <StringArray array={this.props.book.tags} />
-            <i onClick={this.backToAllBooks} className="fa fa-book h1 point"></i>
+            <i onClick={this.backToAllBooks} className="fa fa-large fa-book h1 point"></i>
           </div>
         </div>
       </div>

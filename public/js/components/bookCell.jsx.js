@@ -8,7 +8,7 @@ var BookCell = React.createClass({
   render: function() {
     return (
       <div className="table border point" onClick={this.handleClick}>
-        <div className="table-cell pr4">
+        <div className="table-cell pr2">
           <img className="fit thumbnail" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
         </div>
         <div className="table-cell full-width">

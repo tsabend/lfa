@@ -7,8 +7,8 @@ var BookGrid = React.createClass({
   },
   render: function() {
     var chompedName
-    if(this.props.book.name.length > 20){
-      chompedName = this.props.book.name.substring(0,20) + "..."
+    if(this.props.book.name.length > 19){
+      chompedName = this.props.book.name.substring(0,19) + "..."
     } else {
       chompedName = this.props.book.name
     }
