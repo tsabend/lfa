@@ -10,7 +10,7 @@ nav {
   z-index: 3
 }
 
-.navbar-offset {
+#navbar-offset {
   padding-top: 54px;
 }
 
@@ -21,6 +21,18 @@ nav {
 
 }
 
+.sidebar {
+  position: fixed;
+  top: 54px;
+  width: 14rem;
+  height: 100%;
+  opacity: .98;
+  z-index: 3
+}
+
+.hidden {
+  left: -14rem;
+}
 
 ul {
   list-style: none;
@@ -77,6 +89,22 @@ ul {
 
 .pr4 {
   padding-right: 4rem;
+}
+
+.pt1 {
+  padding-top: 1rem;
+}
+
+.pt2 {
+  padding-top: 2rem;
+}
+
+.pt3 {
+  padding-top: 3rem;
+}
+
+.pt4 {
+  padding-top: 4rem;
 }
 
 .vab {
@@ -180,4 +208,12 @@ ul {
 
 .full-width {
   min-width: 190px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.small {
+  font-size: .5rem;
 }

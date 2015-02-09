@@ -6,9 +6,14 @@ var AllBooks = React.createClass({
   },
   toggleNavBar: function() {
     var searchBar = document.getElementById('sortBar')
-    sortBar.classList.contains("display-none") ?
-    sortBar.classList.remove("display-none") :
-    sortBar.classList.add("display-none")
+    var mainText = document.getElementById('navbar-offset')
+    if(sortBar.classList.contains("hidden")) {
+      sortBar.classList.remove("hidden")
+      mainText.style.paddingLeft = '14rem'
+    } else {
+      sortBar.classList.add("hidden")
+      mainText.style.paddingLeft = '0px'
+    }
   },
   changeFilterType: function(event) {
     this.filterType = event.target.value
@@ -127,27 +132,23 @@ var AllBooks = React.createClass({
         </div>
         <div className="clearfix sm-hide"></div>
       </div>
-      <div id="sortBar" className="display-none clearfix">
-        <div className="overflow-hidden left px2 py2">
-          <input type="text" className="mb0 right fit field-dark" placeholder="&#xF002; Search" style={searchStyle} onChange={this.filterList}/>
-          <select className="mb0 right fit field-light" onChange={this.changeFilterType}>
+      </nav>
+      <div id="sortBar" className="sidebar hidden">
+        <div className="p1 bg-dark-gray full-height">
+          <input type="text" className="mb0 mt2 fit field-dark" placeholder="&#xF002; Search" style={searchStyle} onChange={this.filterList}/>
+          <br></br><select className="mb0 fit field-light" onChange={this.changeFilterType}>
             <option value="title">Title</option>
             <option value="author">Author</option>
             <option value="tag">Tag</option>
             <option value="subject">Subject</option>
           </select>
-        </div>
-        <div className="right">
-          <span className="button button-blue-outline vab" onClick={this.sortTitles}>Titles</span>
-          <span className="button button-blue-outline vab" onClick={this.sortAuthors}>Authors</span>
-          <span className="button button-blue-outline vab" onClick={this.sortSubjects}>Subjects</span>
-          <span className="vas">
-            <i className="fa fa-sort"></i>
-          </span>
+          <h3 className="pt2 blue center">SORT BY</h3>
+          <span className="button button-blue-outline center full-width" onClick={this.sortTitles}>Titles</span><br></br>
+          <span className="button button-blue-outline center full-width" onClick={this.sortAuthors}>Authors</span><br></br>
+          <span className="button button-blue-outline center full-width" onClick={this.sortSubjects}>Subjects</span><br></br>
         </div>
       </div>
-      </nav>
-        <div className="navbar-offset">
+        <div id="navbar-offset">
           {mainView}
         </div>
       </section>
