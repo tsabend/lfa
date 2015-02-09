@@ -5,13 +5,15 @@ View the site:
 
 http://ec2-54-149-144-195.us-west-2.compute.amazonaws.com/
 ## What you decided to do and why:
-I decided to recreate a main view that is similar to the existing LFA UI, but give users an option to view the books in a grid view. Not only is this similar to the user experience I have on my kindle, it also gives users a choice which I felt was important since 1st graders and 12th graders are sure to have different preferences. In the grid view, I am using a CSS hover effect that flips the book, just like you would flip the book over in real life to read the summary on the back. Using hover to show the front and back of the book is similar to what scholastic is doing on their website (http://www.scholastic.com/kids/stacks/books/?lnkid=stacks/nav/b_and_a/main), but I think the flip effect makes it look a lot nicer. Obviously, you couldn't have a hover effect on a mobile app, but something similar could be achieved with differentiating single and double clicks. 
+I decided to recreate a main view that is similar to the existing LFA UI, but also give users an option to view the books in a grid view. This similar to the user experience I have on my kindle and it also gives users a choice, something that I felt was important since 1st graders and 12th graders are sure to have different preferences. 
+
+In the grid view, I am using a CSS hover effect that flips the book, just like you would flip the book over in real life to read the summary on the back. Using hover to show the front and back of the book is similar to what scholastic is doing on their website (http://www.scholastic.com/kids/stacks/books/?lnkid=stacks/nav/b_and_a/main), but I think the flip effect makes it look a lot nicer. Obviously, you couldn't have a hover effect on a mobile app, but something similar could be achieved with differentiating single and double clicks. 
 
 I added a popout sidebar that features a search bar as well as 3 different sort options. I thought about adding genre pagination but ultimately felt that the search bar with a drop down to adjust filter-type allowed for a simpler layout.
 
-When dealing with the data, I decided to parse the JSON into an array of JSON in the parent React component, which made it easier to sort and filter. 
+When dealing with the data, I decided to parse the JSON into an array of JSON objects in the parent React component, which made it easier to sort and filter. 
 
-Although I didn't implement a way to upload a new catalog and thumbnails, all I would need to do to update the catalog is hook the getInitialState method of AllBooks up to a database.
+Although I didn't implement a way to upload a new catalog and thumbnails, all I would need to do to update the catalog is hook the getInitialState method of AllBooks up to a database instead of using the variable bookData.
 
 ## What frameworks / library / language did you use to produce this?
 I chose to use ReactJS. I knew that React was good at rendering views quickly and I like that there is relatively little magic involved in coding with React. Dividing things into components made it easier for me to make changes and allowed me to reuse common patterns. The jsx syntax allowed me to make these components more readable by basically writing html.
