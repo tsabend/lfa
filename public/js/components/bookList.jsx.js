@@ -15,11 +15,9 @@ var BookList = React.createClass({
         )
       }
     }, this)
-    var bookView
-    if(this.props.viewType === "list") {
-      bookView = (<ul className="bookList">{bookNodes}</ul>)
-    } else {
-      bookView = (<div className="container clearfix">{bookNodes}</div>)
+    var bookView = (this.props.viewType === "list")
+      ? <ul className="bookList">{bookNodes}</ul>
+      : <div className="container clearfix">{bookNodes}</div>
     }
     return (
       <div>

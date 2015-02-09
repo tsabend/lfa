@@ -20,9 +20,7 @@ var BookView = React.createClass({
     this.handleBack()
   },
   render: function() {
-    var summary
-    this.props.book.blurb ? summary = this.props.book.blurb : summary = "No summary available"
-
+    var summary = this.props.book.blurb || "No summary available"
     return (
       <div id="bookView">
         <div className="px4 col col-12">

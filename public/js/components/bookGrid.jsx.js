@@ -6,12 +6,9 @@ var BookGrid = React.createClass({
     )
   },
   render: function() {
-    var chompedName
-    if(this.props.book.name.length > 19){
-      chompedName = this.props.book.name.substring(0,19) + "..."
-    } else {
-      chompedName = this.props.book.name
-    }
+    var chompedName = (this.props.book.name.length > 19)
+      ? this.props.book.name.substring(0,19) + "..."
+      : this.props.book.name
     var backOfBook
     if(this.props.book.blurb.length > 0) {
       if(this.props.book.blurb.length > 230) {

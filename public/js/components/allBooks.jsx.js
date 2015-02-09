@@ -60,11 +60,11 @@ var AllBooks = React.createClass({
     }
     var sortedList = this.state.initialBooks
     sortedList = sortedList.sort(comparator)
-    if(this.direction === "asc") {
-      sortedList = sortedList.reverse()
-    }
+    this.direction === "asc" ? sortedList.reverse()
     this.setState({books: sortedList})
-    this.direction === "desc" ? this.direction = "asc" : this.direction = "desc"
+    this.direction = (this.direction === "desc")
+      ? "asc"
+      : "desc"
   },
   sortTitles: function() {
     var comparator = function(a,b) {return a.name.localeCompare(b.name) }
@@ -102,12 +102,9 @@ var AllBooks = React.createClass({
     this.sortTitles()
   },
   render: function() {
-    var mainView
-    if(this.state.books.length === 0) {
-      mainView = <h1>No books match this filter!</h1>
-    } else {
-      mainView = <BookList viewType={this.state.viewType} books={this.state.books} />
-    }
+    var mainView = (this.state.books.length === 0)
+      ? <h1>No books match this filter!</h1>
+      : <BookList viewType={this.state.viewType} books={this.state.books} />
     var viewTypeButton
     if(this.state.viewType === "list") {
       viewTypeButton = <span><i className="fa fa-th-list blue mr1"></i><i className="fa fa-th-large"></i></span>
