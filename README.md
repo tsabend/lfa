@@ -1,8 +1,9 @@
 # lfa
 Coding challenge for Library for All
-View the site: http://ec2-54-149-144-195.us-west-2.compute.amazonaws.com/
+View the site: 
+  http://ec2-54-149-144-195.us-west-2.compute.amazonaws.com/
 ## What you decided to do and why:
-I decided to recreate a main view that is similar to the existing LFA UI, but give users an option to view the books in a grid view. Not only is this similar to the user experience I have on my kindle, it also gives users a choice which I felt was important since 1st graders and 12th graders are sure to have different preferences. In the grid view, I am using a CSS hover effect that flips the book, just like you would flip the book over in real life to read the summary on the back.
+I decided to recreate a main view that is similar to the existing LFA UI, but give users an option to view the books in a grid view. Not only is this similar to the user experience I have on my kindle, it also gives users a choice which I felt was important since 1st graders and 12th graders are sure to have different preferences. In the grid view, I am using a CSS hover effect that flips the book, just like you would flip the book over in real life to read the summary on the back. Using hover to show the front and back of the book is similar to what scholastic is doing on their website (http://www.scholastic.com/kids/stacks/books/?lnkid=stacks/nav/b_and_a/main), but I think the flip effect makes it look a lot nicer. Obviously, you couldn't have a hover effect on a mobile app, but something similar could be achieved with differentiating single and double clicks. 
 
 I added a popout sidebar that features a search bar as well as 3 different sort options. I thought about adding genre pagination but ultimately felt that the search bar with a drop down to adjust filter-type allowed for a simpler layout.
 
