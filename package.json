@@ -1,3 +1,25 @@
 {
-  "name": "lfa"
+  "name": "lfa",
+  "version": "1.0.0",
+  "description": "Coding challenge for Library for All View the site: http://ec2-54-149-144-195.us-west-2.compute.amazonaws.com/ ## What you decided to do and why: I decided to recreate a main view that is similar to the existing LFA UI, but give users an option to view the books in a grid view. Not only is this similar to the user experience I have on my kindle, it also gives users a choice which I felt was important since 1st graders and 12th graders are sure to have different preferences. In the grid view, I am using a CSS hover effect that flips the book, just like you would flip the book over in real life to read the summary on the back.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.11.2",
+    "ejs": "^2.2.4",
+    "react-tools": "^0.12.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsabend/lfa.git"
+  },
+  "author": "Thomas Abend",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsabend/lfa/issues"
+  },
+  "homepage": "https://github.com/tsabend/lfa"
 }
