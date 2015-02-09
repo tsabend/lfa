@@ -2,6 +2,7 @@
   width: device-width;
 }
 
+/* NAVBAR CSS */
 nav {
   height: auto;
   position: fixed;
@@ -12,13 +13,6 @@ nav {
 
 #navbar-offset {
   padding-top: 54px;
-}
-
-.bookList {
-  list-style: none;
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-
 }
 
 .sidebar {
@@ -33,6 +27,13 @@ nav {
 .hidden {
   left: -14rem;
 }
+
+.logo {
+  position: absolute;
+  left: 50%;
+  margin-left: -84px;
+}
+
 
 ul {
   list-style: none;
@@ -52,13 +53,6 @@ ul {
   min-width: 350px;
 }
 
-.fa {
-  font-size:36px;
-}
-
-.fa-large {
-  font-size:84px;
-}
 
 .thumbnail {
   min-height: 250px;
@@ -68,10 +62,12 @@ ul {
   border: 1px black solid;
 }
 
-.stuck {position: fixed;}
+.fa {
+  font-size:36px;
+}
 
-.gridTitle {
-  /*position: relative;*/
+.fa-large {
+  font-size:84px;
 }
 
 /* PADDING EXTENSIONS IN BASSCSS STYLE */
@@ -107,31 +103,23 @@ ul {
   padding-top: 4rem;
 }
 
-.vab {
-  vertical-align: baseline;
-}
-
-.vas {
-  vertical-align: sub;
-}
-
-.logo {
-  position: absolute;
-  left: 50%;
-  margin-left: -84px;
-}
-
 .ma {
   margin: 0 auto;
 }
-
-.table-no-width {
-  display: table;
+/* Handle problems with table view on mobile */
+.full-width {
+  min-width: 190px;
 }
 
+.full-height {
+  height: 100%;
+}
+
+.small {
+  font-size: .5rem;
+}
 
 /* FLIP BOOKS ON HOVER */
-
 .flip-container {
     -webkit-perspective: 1000;
     -moz-perspective: 1000;
@@ -204,16 +192,4 @@ ul {
 
 .front {
     z-index: 2;
-}
-
-.full-width {
-  min-width: 190px;
-}
-
-.full-height {
-  height: 100%;
-}
-
-.small {
-  font-size: .5rem;
 }
