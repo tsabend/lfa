@@ -61,7 +61,9 @@ var AllBooks = React.createClass({
     }
     var sortedList = this.state.initialBooks
     sortedList = sortedList.sort(comparator)
-    this.direction === "asc" ? sortedList.reverse()
+    if(this.direction === "asc") {
+      sortedList.reverse()
+    } 
     this.setState({books: sortedList})
     this.direction = (this.direction === "desc")
       ? "asc"

@@ -42,6 +42,7 @@ var AllBooks = React.createClass({displayName: "AllBooks",
         }).length
         return numMatches > 0
       } else if(this.filterType === "tag") {
+      // Filter by tag
         var numMatches = book.tags.filter(function(tag) {
           return tag.toLowerCase().search(
           event.target.value.toLowerCase()) !== -1
@@ -61,8 +62,8 @@ var AllBooks = React.createClass({displayName: "AllBooks",
     var sortedList = this.state.initialBooks
     sortedList = sortedList.sort(comparator)
     if(this.direction === "asc") {
-      sortedList = sortedList.reverse()
-    }
+      sortedList.reverse()
+    } 
     this.setState({books: sortedList})
     this.direction = (this.direction === "desc")
       ? "asc"
@@ -102,18 +103,19 @@ var AllBooks = React.createClass({displayName: "AllBooks",
         languages: bookData[book]["doc"]["languages"]
       })
     }
-    return {initialBooks: books, books: [], viewType: this.props.viewType || "list"}
+    return {
+      initialBooks: books,
+      books: [],
+      viewType: this.props.viewType || "list"
+    }
   },
   componentWillMount: function(){
     this.sortTitles()
   },
   render: function() {
-    var mainView
-    if(this.state.books.length === 0) {
-      mainView = React.createElement("h1", null, "No books match this filter!")
-    } else {
-      mainView = React.createElement(BookList, {viewType: this.state.viewType, books: this.state.books})
-    }
+    var mainView = (this.state.books.length === 0)
+      ? React.createElement("h1", null, "No books match this filter!")
+      : React.createElement(BookList, {viewType: this.state.viewType, books: this.state.books})
     var viewTypeButton
     if(this.state.viewType === "list") {
       viewTypeButton =
