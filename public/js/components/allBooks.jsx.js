@@ -42,6 +42,7 @@ var AllBooks = React.createClass({
         }).length
         return numMatches > 0
       } else if(this.filterType === "tag") {
+      // Filter by tag
         var numMatches = book.tags.filter(function(tag) {
           return tag.toLowerCase().search(
           event.target.value.toLowerCase()) !== -1
@@ -116,6 +117,7 @@ var AllBooks = React.createClass({
     }
     return (
       <section>
+      {/* TOP NAVBAR */}
       <nav className="full-width">
       <span className="h1 logo white">My Books</span>
       <div className="clearfix white bg-dark-gray">
@@ -130,6 +132,7 @@ var AllBooks = React.createClass({
         <div className="clearfix sm-hide"></div>
       </div>
       </nav>
+      {/* POP-OUT SIDEBAR */}
       <div id="sortBar" className="sidebar hidden">
         <div className="p1 bg-dark-gray full-height">
           <input type="text" className="mb0 mt2 fit field-dark" placeholder="&#xF002; Search" style={searchStyle} onChange={this.filterList}/>
@@ -145,6 +148,7 @@ var AllBooks = React.createClass({
           <span className="button button-blue-outline center full-width" onClick={this.sortSubjects}>Subjects</span><br></br>
         </div>
       </div>
+      {/* MAIN LIBRARY VIEW */}
         <div id="navbar-offset">
           {mainView}
         </div>
