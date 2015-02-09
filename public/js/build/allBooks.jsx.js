@@ -6,9 +6,14 @@ var AllBooks = React.createClass({displayName: "AllBooks",
   },
   toggleNavBar: function() {
     var searchBar = document.getElementById('sortBar')
-    sortBar.classList.contains("display-none") ?
-    sortBar.classList.remove("display-none") :
-    sortBar.classList.add("display-none")
+    var mainText = document.getElementById('navbar-offset')
+    if(sortBar.classList.contains("hidden")) {
+      sortBar.classList.remove("hidden")
+      mainText.style.paddingLeft = '14rem'
+    } else {
+      sortBar.classList.add("hidden")
+      mainText.style.paddingLeft = '0px'
+    }
   },
   changeFilterType: function(event) {
     this.filterType = event.target.value
@@ -59,18 +64,24 @@ var AllBooks = React.createClass({displayName: "AllBooks",
       sortedList = sortedList.reverse()
     }
     this.setState({books: sortedList})
-    this.direction === "desc" ? this.direction = "asc" : this.direction = "desc"
+    this.direction = (this.direction === "desc")
+      ? "asc"
+      : "desc"
   },
   sortTitles: function() {
     var comparator = function(a,b) {return a.name.localeCompare(b.name) }
     this.sortList(comparator, "titles")
   },
   sortAuthors: function() {
-    var comparator = function(a, b) { return a.authors[0].full_name.localeCompare(b.authors[0].full_name) }
+    var comparator = function(a, b) {
+      return a.authors[0].full_name.trim().localeCompare(b.authors[0].full_name)
+    }
     this.sortList(comparator, "authors")
   },
   sortSubjects: function() {
-    var comparator = function(a, b) { return a.subjects[0].localeCompare(b.subjects[0])}
+    var comparator = function(a, b) {
+      return a.subjects[0].localeCompare(b.subjects[0])
+    }
     this.sortList(comparator, "subjects")
   },
   getInitialState: function() {
@@ -105,49 +116,64 @@ var AllBooks = React.createClass({displayName: "AllBooks",
     }
     var viewTypeButton
     if(this.state.viewType === "list") {
-      viewTypeButton = React.createElement("span", null, React.createElement("i", {className: "fa fa-th-list blue mr1"}), React.createElement("i", {className: "fa fa-th-large"}))
+      viewTypeButton =
+        React.createElement("span", null, 
+          React.createElement("i", {className: "fa fa-th-list blue mr1"}), 
+          React.createElement("i", {className: "fa fa-th-large"})
+        )
     } else {
-      viewTypeButton = React.createElement("span", null, React.createElement("i", {className: "fa fa-th-list mr1"}), React.createElement("i", {className: "fa fa-th-large blue"}))
+      viewTypeButton =
+        React.createElement("span", null, 
+          React.createElement("i", {className: "fa fa-th-list mr1"}), 
+          React.createElement("i", {className: "fa fa-th-large blue"})
+        )
     }
     var searchStyle = {
       fontFamily: 'FontAwesome'
     }
     return (
       React.createElement("section", null, 
+      /* TOP NAVBAR */
       React.createElement("nav", {className: "full-width"}, 
       React.createElement("span", {className: "h1 logo white"}, "My Books"), 
       React.createElement("div", {className: "clearfix white bg-dark-gray"}, 
         React.createElement("div", {className: "left"}, 
           React.createElement("span", {className: "button m0 button-nav-dark point"}, 
-          React.createElement("i", {className: "fa fa-align-justify", onClick: this.toggleNavBar})
+          React.createElement("i", {className: "fa fa-align-justify", 
+            onClick: this.toggleNavBar})
           )
         ), 
         React.createElement("div", {className: "right"}, 
-          React.createElement("span", {className: "button m0 button-nav-dark", onClick: this.toggleViewType}, viewTypeButton)
+          React.createElement("span", {className: "button m0 button-nav-dark", 
+            onClick: this.toggleViewType}, viewTypeButton)
         ), 
         React.createElement("div", {className: "clearfix sm-hide"})
+      )
       ), 
-      React.createElement("div", {id: "sortBar", className: "display-none clearfix"}, 
-        React.createElement("div", {className: "overflow-hidden left px2 py2"}, 
-          React.createElement("input", {type: "text", className: "mb0 right fit field-dark", placeholder: " Search", style: searchStyle, onChange: this.filterList}), 
-          React.createElement("select", {className: "mb0 right fit field-light", onChange: this.changeFilterType}, 
+      /* POP-OUT SIDEBAR */
+      React.createElement("div", {id: "sortBar", className: "sidebar hidden"}, 
+        React.createElement("div", {className: "p1 bg-dark-gray full-height"}, 
+          React.createElement("input", {type: "text", className: "mb0 mt2 fit field-dark", 
+            placeholder: " Search", 
+            style: searchStyle, 
+            onChange: this.filterList}), 
+          React.createElement("select", {className: "mb0 fit field-light", onChange: this.changeFilterType}, 
             React.createElement("option", {value: "title"}, "Title"), 
             React.createElement("option", {value: "author"}, "Author"), 
             React.createElement("option", {value: "tag"}, "Tag"), 
             React.createElement("option", {value: "subject"}, "Subject")
-          )
-        ), 
-        React.createElement("div", {className: "right"}, 
-          React.createElement("span", {className: "button button-blue-outline vab", onClick: this.sortTitles}, "Titles"), 
-          React.createElement("span", {className: "button button-blue-outline vab", onClick: this.sortAuthors}, "Authors"), 
-          React.createElement("span", {className: "button button-blue-outline vab", onClick: this.sortSubjects}, "Subjects"), 
-          React.createElement("span", {className: "vas"}, 
-            React.createElement("i", {className: "fa fa-sort"})
-          )
+          ), 
+          React.createElement("h3", {className: "pt2 blue center"}, "SORT BY"), 
+          React.createElement("button", {className: "button button-blue-outline center full-width", 
+            onClick: this.sortTitles}, "Titles"), 
+          React.createElement("button", {className: "button button-blue-outline center full-width", 
+            onClick: this.sortAuthors}, "Authors"), 
+          React.createElement("button", {className: "button button-blue-outline center full-width", 
+            onClick: this.sortSubjects}, "Subjects")
         )
-      )
       ), 
-        React.createElement("div", {className: "navbar-offset"}, 
+      /* MAIN LIBRARY VIEW */
+        React.createElement("div", {id: "navbar-offset"}, 
           mainView
         )
       )

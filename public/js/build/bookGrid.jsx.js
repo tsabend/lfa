@@ -1,17 +1,17 @@
 var BookGrid = React.createClass({displayName: "BookGrid",
   handleClick: function() {
     React.render(
-      React.createElement(BookView, {book: this.props.book, viewType: "grid", scrollPosition: window.scrollY}),
+      React.createElement(BookView, {
+        book: this.props.book, 
+        viewType: "grid", 
+        scrollPosition: window.scrollY}),
       document.getElementById('books')
     )
   },
   render: function() {
-    var chompedName
-    if(this.props.book.name.length > 20){
-      chompedName = this.props.book.name.substring(0,20) + "..."
-    } else {
-      chompedName = this.props.book.name
-    }
+    var chompedName = (this.props.book.name.length > 19)
+      ? this.props.book.name.substring(0,19) + "..."
+      : this.props.book.name
     var backOfBook
     if(this.props.book.blurb.length > 0) {
       if(this.props.book.blurb.length > 230) {
@@ -28,11 +28,15 @@ var BookGrid = React.createClass({displayName: "BookGrid",
           React.createElement("div", {className: "flipper"}, 
             React.createElement("div", {className: "front"}, 
               React.createElement("h4", {className: "center"}, chompedName), 
-              React.createElement("img", {className: "fit thumbnail mx4 border point", src: "../thumbnails/"+ this.props.book.bookId +".jpg"})
+              React.createElement("img", {className: "fit thumbnail mx4 border point", 
+                src: "../thumbnails/"+ this.props.book.bookId +".jpg"}
+              )
             ), 
             React.createElement("div", {className: "back"}, 
               React.createElement("h4", {className: "center"}, chompedName), 
-              React.createElement("p", {className: "center thumbnail point border bg-blue"}, backOfBook)
+              React.createElement("p", {className: "center white py1 thumbnail point border bg-blue"}, 
+                backOfBook
+              )
             )
           )
         )
