@@ -24,12 +24,21 @@ var BookView = React.createClass({
     return (
       <div id="bookView">
         <div className="px4 col col-12">
-          <i onClick={this.backToAllBooks} className="left point fa-large fa fa-chevron-circle-left"></i>
-          <i onClick={this.backToAllBooks} className="right fa fa-large fa-book h1 point"></i>
+          <span className="left point center">
+            <h4>Back To Library</h4>
+            <i className="fa-large fa fa-chevron-circle-left"
+              onClick={this.backToAllBooks}></i>
+          </span>
+          <span className="right point center">
+            <h4>Read This Book</h4>
+            <i onClick={this.backToAllBooks} className="fa fa-large fa-book"></i>
+          </span>
         </div>
         <div className="container clearfix p2">
           <div className="col md-col-6 sm-col-12 p2">
-            <img className="large-image border" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
+            <img className="large-image border"
+              src={"../thumbnails/"+ this.props.book.bookId +".jpg"}>
+            </img>
           </div>
           <div className="col md-col-6 sm-col-12">
             <h1 className="blue">{this.props.book.name}</h1>

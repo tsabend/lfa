@@ -1,7 +1,10 @@
 var BookGrid = React.createClass({
   handleClick: function() {
     React.render(
-      <BookView book={this.props.book} viewType="grid" scrollPosition={window.scrollY} />,
+      <BookView
+        book={this.props.book}
+        viewType="grid"
+        scrollPosition={window.scrollY} />,
       document.getElementById('books')
     )
   },
@@ -25,11 +28,15 @@ var BookGrid = React.createClass({
           <div className="flipper">
             <div className="front">
               <h4 className="center">{chompedName}</h4>
-              <img className="fit thumbnail mx4 border point" src={"../thumbnails/"+ this.props.book.bookId +".jpg"}></img>
+              <img className="fit thumbnail mx4 border point"
+                src={"../thumbnails/"+ this.props.book.bookId +".jpg"}>
+              </img>
             </div>
             <div className="back">
               <h4 className="center">{chompedName}</h4>
-              <p className="center white py1 thumbnail point border bg-blue">{backOfBook}</p>
+              <p className="center white py1 thumbnail point border bg-blue">
+                {backOfBook}
+              </p>
             </div>
           </div>
         </div>

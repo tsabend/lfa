@@ -72,11 +72,15 @@ var AllBooks = React.createClass({
     this.sortList(comparator, "titles")
   },
   sortAuthors: function() {
-    var comparator = function(a, b) { return a.authors[0].full_name.trim().localeCompare(b.authors[0].full_name) }
+    var comparator = function(a, b) {
+      return a.authors[0].full_name.trim().localeCompare(b.authors[0].full_name)
+    }
     this.sortList(comparator, "authors")
   },
   sortSubjects: function() {
-    var comparator = function(a, b) { return a.subjects[0].localeCompare(b.subjects[0])}
+    var comparator = function(a, b) {
+      return a.subjects[0].localeCompare(b.subjects[0])
+    }
     this.sortList(comparator, "subjects")
   },
   getInitialState: function() {
@@ -97,7 +101,11 @@ var AllBooks = React.createClass({
         languages: bookData[book]["doc"]["languages"]
       })
     }
-    return {initialBooks: books, books: [], viewType: this.props.viewType || "list"}
+    return {
+      initialBooks: books,
+      books: [],
+      viewType: this.props.viewType || "list"
+    }
   },
   componentWillMount: function(){
     this.sortTitles()
@@ -108,9 +116,17 @@ var AllBooks = React.createClass({
       : <BookList viewType={this.state.viewType} books={this.state.books} />
     var viewTypeButton
     if(this.state.viewType === "list") {
-      viewTypeButton = <span><i className="fa fa-th-list blue mr1"></i><i className="fa fa-th-large"></i></span>
+      viewTypeButton =
+        <span>
+          <i className="fa fa-th-list blue mr1"></i>
+          <i className="fa fa-th-large"></i>
+        </span>
     } else {
-      viewTypeButton = <span><i className="fa fa-th-list mr1"></i><i className="fa fa-th-large blue"></i></span>
+      viewTypeButton =
+        <span>
+          <i className="fa fa-th-list mr1"></i>
+          <i className="fa fa-th-large blue"></i>
+        </span>
     }
     var searchStyle = {
       fontFamily: 'FontAwesome'
@@ -123,11 +139,13 @@ var AllBooks = React.createClass({
       <div className="clearfix white bg-dark-gray">
         <div className="left">
           <span className="button m0 button-nav-dark point">
-          <i className="fa fa-align-justify" onClick={this.toggleNavBar}></i>
+          <i className="fa fa-align-justify"
+            onClick={this.toggleNavBar}></i>
           </span>
         </div>
         <div className="right">
-          <span className="button m0 button-nav-dark" onClick={this.toggleViewType}>{viewTypeButton}</span>
+          <span className="button m0 button-nav-dark"
+            onClick={this.toggleViewType}>{viewTypeButton}</span>
         </div>
         <div className="clearfix sm-hide"></div>
       </div>
@@ -135,17 +153,23 @@ var AllBooks = React.createClass({
       {/* POP-OUT SIDEBAR */}
       <div id="sortBar" className="sidebar hidden">
         <div className="p1 bg-dark-gray full-height">
-          <input type="text" className="mb0 mt2 fit field-dark" placeholder="&#xF002; Search" style={searchStyle} onChange={this.filterList}/>
-          <br></br><select className="mb0 fit field-light" onChange={this.changeFilterType}>
+          <input type="text" className="mb0 mt2 fit field-dark"
+            placeholder="&#xF002; Search"
+            style={searchStyle}
+            onChange={this.filterList}/>
+          <select className="mb0 fit field-light" onChange={this.changeFilterType}>
             <option value="title">Title</option>
             <option value="author">Author</option>
             <option value="tag">Tag</option>
             <option value="subject">Subject</option>
           </select>
           <h3 className="pt2 blue center">SORT BY</h3>
-          <span className="button button-blue-outline center full-width" onClick={this.sortTitles}>Titles</span><br></br>
-          <span className="button button-blue-outline center full-width" onClick={this.sortAuthors}>Authors</span><br></br>
-          <span className="button button-blue-outline center full-width" onClick={this.sortSubjects}>Subjects</span><br></br>
+          <button className="button button-blue-outline center full-width"
+            onClick={this.sortTitles}>Titles</button>
+          <button className="button button-blue-outline center full-width"
+            onClick={this.sortAuthors}>Authors</button>
+          <button className="button button-blue-outline center full-width"
+            onClick={this.sortSubjects}>Subjects</button>
         </div>
       </div>
       {/* MAIN LIBRARY VIEW */}
