@@ -16,6 +16,7 @@ var BookView = React.createClass({
       }.bind(this)
   },
   componentDidMount: function() {
+    window.scrollTo(0, 0)
     this.handleBack()
   },
   render: function() {
