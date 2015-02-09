@@ -32,7 +32,7 @@ var BookGrid = React.createClass({
             </div>
             <div className="back">
               <h4 className="center">{chompedName}</h4>
-              <p className="center thumbnail point border bg-blue">{backOfBook}</p>
+              <p className="center white py1 thumbnail point border bg-blue">{backOfBook}</p>
             </div>
           </div>
         </div>
