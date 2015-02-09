@@ -14,6 +14,7 @@ var BookCell = React.createClass({
         <div className="table-cell full-width">
           <h1 className="m0 py2">{this.props.book.name}</h1>
           <Authors authors={this.props.book.authors} />
+          <span className="small"><StringArray array={this.props.book.subjects} /></span>
         </div>
       </div>
     )
