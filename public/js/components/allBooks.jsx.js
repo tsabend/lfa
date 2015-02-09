@@ -71,7 +71,7 @@ var AllBooks = React.createClass({
     this.sortList(comparator, "titles")
   },
   sortAuthors: function() {
-    var comparator = function(a, b) { return a.authors[0].full_name.localeCompare(b.authors[0].full_name) }
+    var comparator = function(a, b) { return a.authors[0].full_name.trim().localeCompare(b.authors[0].full_name) }
     this.sortList(comparator, "authors")
   },
   sortSubjects: function() {
